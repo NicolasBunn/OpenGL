@@ -1,0 +1,21 @@
+#Visual Studio Files
+
+*.[Oo]bj
+*.user
+*.aps
+*.ipch
+*.tlog
+*.idb
+*.pdb
+*.exe
+*.lastbuildstate
+*.log
+*.manifest
+*.ilk
+*.rc
+*.res
+*.sdf
+*.suo
+[Dd]ebug*/
+[Rr]elease*/
+ipch/

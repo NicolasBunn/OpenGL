@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SDL_PATH)\include\;$(OGL_VPL_PROJ)\;$(OGL_VPL_PROJ)\Shapes\;$(ASSIMP_PATH)\Assimp\;$(DEVIL_PATH)\include\;$(GLM_PATH)\glm\;$(GLM_PATH)\glm\core\;$(GLM_PATH)\glm\gtc\;$(GLM_PATH)\glm\gtx\;$(GLM_PATH)\glm\virtrev\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDL_PATH)\lib\x86;$(DEVIL_PATH)\lib\;$(ASSIMP_PATH)\assimp_release-dll_win32;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)$(Configuration)</TargetName>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SDL_PATH)\include\;$(OGL_VPL_PROJ)\;$(OGL_VPL_PROJ)\Shapes\;$(OGL_VPL_PROJ)\glm-0.9.4.0\glm\;$(OGL_VPL_PROJ)\glm-0.9.4.0\glm\core\;$(OGL_VPL_PROJ)\glm-0.9.4.0\glm\gtc\;$(OGL_VPL_PROJ)\glm-0.9.4.0\glm\gtx\;$(OGL_VPL_PROJ)\glm-0.9.4.0\glm\virtrev\;$(ASSIMP_PATH)\include\;$(DEVIL_PATH)\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDL_PATH)\lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Configuration)</OutDir>
+    <IntDir>$(Configuration)</IntDir>
+    <TargetName>$(ProjectName)$(Configuration)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../ ../Shapes ../glm-0.9.4.0/glm/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <CompileAs>Default</CompileAs>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>assimp.lib;SDL.lib;SDLmain.lib;glu32.lib;glew32s.lib;glew32mxs.lib;freeglut.lib;OpenGL32.lib;ILU.lib;ILUT.lib;DevIL.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <AdditionalOptions>/ignore:4098 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../ ../Shapes ../glm-0.9.4.0/glm/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>assimp.lib;SDL.lib;SDLmain.lib;glu32.lib;glew32s.lib;glew32mxs.lib;freeglut.lib;OpenGL32.lib;ILU.lib;ILUT.lib;DevIL.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AssimpShape.cpp" />
+    <ClCompile Include="..\Camera.cpp" />
+    <ClCompile Include="..\CubemapTexture.cpp" />
+    <ClCompile Include="..\DrawableElement.cpp" />
+    <ClCompile Include="..\GenSky.cpp" />
+    <ClCompile Include="..\GeometryFbo.cpp" />
+    <ClCompile Include="..\ImportRadiance.cpp" />
+    <ClCompile Include="..\include.cpp" />
+    <ClCompile Include="..\InputManager.cpp" />
+    <ClCompile Include="..\Keyboard.cpp" />
+    <ClCompile Include="..\Light.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\Math.cpp" />
+    <ClCompile Include="..\MatrixStack.cpp" />
+    <ClCompile Include="..\Mouse.cpp" />
+    <ClCompile Include="..\RadianceShape.cpp" />
+    <ClCompile Include="..\SceneManager.cpp" />
+    <ClCompile Include="..\ShadowMapFBO.cpp" />
+    <ClCompile Include="..\Shapes\Sphere.cpp" />
+    <ClCompile Include="..\Shapes\Triangle.cpp" />
+    <ClCompile Include="..\Skybox.cpp" />
+    <ClCompile Include="..\Texture.cpp" />
+    <ClCompile Include="..\Tool.cpp" />
+    <ClCompile Include="..\WindowsManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AssimpShape.hpp" />
+    <ClInclude Include="..\Camera.hpp" />
+    <ClInclude Include="..\CubemapTexture.hpp" />
+    <ClInclude Include="..\DrawableElement.hpp" />
+    <ClInclude Include="..\GenSky.hpp" />
+    <ClInclude Include="..\GeometryFbo.hpp" />
+    <ClInclude Include="..\ImportRadiance.hpp" />
+    <ClInclude Include="..\include.h" />
+    <ClInclude Include="..\InputManager.hpp" />
+    <ClInclude Include="..\Keyboard.hpp" />
+    <ClInclude Include="..\Light.hpp" />
+    <ClInclude Include="..\Math.hpp" />
+    <ClInclude Include="..\MatrixStack.hpp" />
+    <ClInclude Include="..\Mouse.hpp" />
+    <ClInclude Include="..\RadianceShape.hpp" />
+    <ClInclude Include="..\SceneManager.hpp" />
+    <ClInclude Include="..\ShadowMapFBO.hpp" />
+    <ClInclude Include="..\Shapes\allShapes.h" />
+    <ClInclude Include="..\Shapes\Sphere.hpp" />
+    <ClInclude Include="..\Shapes\Triangle.hpp" />
+    <ClInclude Include="..\Skybox.hpp" />
+    <ClInclude Include="..\Texture.hpp" />
+    <ClInclude Include="..\Tool.hpp" />
+    <ClInclude Include="..\WindowsManager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Data\makefile.rif" />
+    <None Include="..\Data\Sky.txt" />
+    <None Include="..\Data\test.rad" />
+    <None Include="..\Data\test2.rad" />
+    <None Include="..\Shaders\depth.fs.glsl" />
+    <None Include="..\Shaders\depth.vs.glsl" />
+    <None Include="..\Shaders\diffuseLight.fs.glsl" />
+    <None Include="..\Shaders\diffuseLight.vs.glsl" />
+    <None Include="..\Shaders\flat.fs.glsl" />
+    <None Include="..\Shaders\flat.vs.glsl" />
+    <None Include="..\Shaders\light.fs.glsl" />
+    <None Include="..\Shaders\normalcolor.fs.glsl" />
+    <None Include="..\Shaders\shadowMapping.fs.glsl" />
+    <None Include="..\Shaders\shadowMapping.vs.glsl" />
+    <None Include="..\shaders\skybox.fs.glsl" />
+    <None Include="..\shaders\skybox.vs.glsl" />
+    <None Include="..\Shaders\ssao.fs.glsl" />
+    <None Include="..\Shaders\ssao.vs.glsl" />
+    <None Include="..\Shaders\testrendu.fs.glsl" />
+    <None Include="..\Shaders\testrendu.vs.glsl" />
+    <None Include="..\Shaders\texcoordscolor.fs.glsl" />
+    <None Include="..\Shaders\transform.vs.glsl" />
+    <None Include="..\TODO" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

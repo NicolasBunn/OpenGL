@@ -1,0 +1,17 @@
+// Mathieu
+ajouter une method de log generique (vararg / fd)
+ajouter des shapes par défault pour des test
+
+//Nicolas
+
+Gerer le multi touche pour le clavier
+Draw & Draw indexed
+
+08/01/2013
+
+Masque pour le clavier
+Gerer PNG (Image magick lien http://www.imagemagick.org/Magick++/) et EXR (Open EXR)
+fichier de conf pour description scene, modeles
+ASSIMP
+
+

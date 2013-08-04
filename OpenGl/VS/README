@@ -1,0 +1,6 @@
+The programm need to environnement variable:
+OGL_VPL_PROJ: the root of the project, actually it's where file main.cpp is.
+SDL_PATH: the main folder of the sdl librairie.
+ASSIMP_PATH : the main folder of the assimp libary need for load 3D model
+DEVIL_PATH : the main folder of the developper image library need for load different image formats (png,jpg,tga)
+GLM_PATH : the main folder for the openGL mathematics library
