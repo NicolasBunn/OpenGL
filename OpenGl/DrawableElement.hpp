@@ -141,6 +141,7 @@ private:
   GLuint _ibo;
   GLuint _prog;
 
+
   Element *_model;
 
   bool _indexedDraw;
@@ -177,6 +178,8 @@ public:
   static ShadowMapFBO _shadowMapFBONear;
   static ShadowMapFBO _shadowMapFBOMiddle;
   static ShadowMapFBO _shadowMapFBOFar;
+
+  static bool debugMsg;
 
   static GeometryFbo _finalRendu;
   static GeometryFbo _skyboxFBO;

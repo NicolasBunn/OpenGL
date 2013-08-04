@@ -8,6 +8,8 @@ ShadowMapFBO DrawableElement::_shadowMapFBOFar;
 GeometryFbo DrawableElement::_finalRendu;
 GeometryFbo DrawableElement::_skyboxFBO;
 
+bool DrawableElement::debugMsg = false;
+
 
 DrawableElement::DrawableElement(GLuint prog, Element *newElement)
   : _prog(prog),
@@ -54,7 +56,8 @@ DrawableElement::DrawableElement(GLuint prog, Element *newElement)
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
 
-  
+
+
   //Definition de la dimension des différentes shadow maps
 
 }
@@ -73,7 +76,9 @@ void DrawableElement::SetMinMaxBox()
    // std::cerr<<"Vertex element : ["<<cur_vertex->position.x<<"/"<<cur_vertex->position.y<<"/"<<cur_vertex->position.z<<"]"<<std::endl;
     cur_vertex++;
   }
-  std::cerr<<"BBox of element : ["<<minBBox.x<<"/"<<minBBox.y<<"/"<<minBBox.z<<"] ["<<maxBBox.x<<"/"<<maxBBox.y<<"/"<<maxBBox.z<<"]"<<std::endl;
+  
+  if(debugMsg)
+	std::cerr<<"BBox of element : ["<<minBBox.x<<"/"<<minBBox.y<<"/"<<minBBox.z<<"] ["<<maxBBox.x<<"/"<<maxBBox.y<<"/"<<maxBBox.z<<"]"<<std::endl;
 
 }
 
@@ -113,17 +118,22 @@ void DrawableElement::initShadowParam(int ind, Camera camera, glm::mat4 modelMat
     float Hfar = 2.0 * tan(fov / 2.0) * farDist;
     float Wfar = Hfar * ratio;
     glm::vec3 poscam = glm::vec3(camera.getPosition().x,camera.getPosition().y,camera.getPosition().z);
-    affVector3(poscam,"Position camera");
+	if(debugMsg)
+		affVector3(poscam,"Position camera");
     glm::vec3 dir = glm::vec3(camera.getDir().x,camera.getDir().y,camera.getDir().z);
     dir = glm::normalize(dir);
-    affVector3(dir,"Dir vector");
+    if(debugMsg)
+		affVector3(dir,"Dir vector");
     glm::vec3 up = glm::vec3(camera.getUp().x,camera.getUp().y,camera.getUp().z);
     glm::vec3 right = glm::cross(dir,up);
     right = glm::normalize(right);
     up = glm::cross(right,dir);
+	if(debugMsg)
+	{
+		affVector3(up,"Up vector");
+		affVector3(right,"Right vector");
+	}
 
-    affVector3(up,"Up vector");
-    affVector3(right,"Right vector");
 
     cornerFrustum[0] = poscam - (up * (Hfar/2.0f)) - (right * (Wfar/2.0f));
     cornerFrustum[1] = poscam - (up * (Hfar/2.0f)) + (right * (Wfar/2.0f));
@@ -211,32 +221,12 @@ void DrawableElement::updateShadowPass(glm::mat4 modelMatrix,Camera camera, std:
     glUniformMatrix4fv(glGetUniformLocation(_prog, "uWVP"), 1, GL_FALSE, &depthMVP[0][0]);
   
     drawIndexed();
-
-    /*
-
-    glBindFramebuffer(GL_FRAMEBUFFER, _shadowMapFBOFar.getFBO());
-
-    glViewport(0, 0, GeneralParameter::GBufferSize(), GeneralParameter::GBufferSize());
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_DEPTH_TEST);
-
-    //Shadow mapping pour les modèles éloignés de la caméra
-    initShadowParam(2,camera, lightList[0].Normal);
-
-    depthMVP = _depthProjectionMatrix * _depthViewMatrix * modelMatrix;
-  
-    glUniformMatrix4fv(glGetUniformLocation(_prog, "uWVP"), 1, GL_FALSE, &depthMVP[0][0]);
-    drawIndexed();
-    */
   
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
 void DrawableElement::updateLightPass(glm::mat4 MVPMatrix,glm::mat4 modelMatrix, std::vector<Light> &lightList, Camera camera)
 {
-  //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-  //glViewport(0,0, 1024, 1024);
 
   glBindFramebuffer(GL_FRAMEBUFFER, _finalRendu.getFBO());
   glViewport(0, 0, GeneralParameter::GBufferSize(), GeneralParameter::GBufferSize());
@@ -246,9 +236,6 @@ void DrawableElement::updateLightPass(glm::mat4 MVPMatrix,glm::mat4 modelMatrix,
 
   initShadowParam(0, camera, modelMatrix, lightList[0].Normal);
   glm::mat4 depthMVPFar = _depthProjectionMatrix * _depthViewMatrix * modelMatrix ;
-
-  //initShadowParam(1, camera, modelMatrix, lightList[0].Normal);
-  //glm::mat4 depthMVPMiddle = _depthProjectionMatrix * _depthViewMatrix * modelMatrix;
 
   initShadowParam(2, camera, modelMatrix, lightList[0].Normal);
   glm::mat4 depthMVPNear = _depthProjectionMatrix * _depthViewMatrix * modelMatrix ;
@@ -370,7 +357,8 @@ void DrawableElement::updateSkybox(glm::mat4 posUpdate,  CubemapTexture* texture
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glUniformMatrix4fv(glGetUniformLocation(_prog, "uMVPMatrix"), 1, GL_FALSE, glm::value_ptr(posUpdate));
-  affMatrix(posUpdate,"Matrice model skybox...");
+  if(debugMsg)
+	affMatrix(posUpdate,"Matrice model skybox...");
 
   //drawIndexed();
   drawSkybox(texture);

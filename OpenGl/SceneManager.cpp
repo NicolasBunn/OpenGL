@@ -69,9 +69,6 @@ SceneManager::~SceneManager()
   _wmInstance = NULL;
 }
 
-
-
-
 inline void SceneManager::initShader(const char *vertexShaderFileName, const char *fragmentShaderFileName, int shaderEnum)
 {
   string vsShader(VPLOGL_SHADERS_PATH);
@@ -179,7 +176,7 @@ int SceneManager::update()
     {
       if(count == SCENEMANAGER_SHADERINDEX_DIFFUSE)
       {
-        std::cerr<<"Diffuse"<<std::endl;
+        //std::cerr<<"Diffuse"<<std::endl;
         _matrixStack.push(_matrixStack.top());
         _matrixStack.rotate(90.0f, glm::vec3(-1.0f, 0.0f, 0.0f));
         _matrixStackWorld.push(_matrixStackWorld.top());
@@ -192,7 +189,7 @@ int SceneManager::update()
       if(count == SCENEMANAGER_SHADERINDEX_SHADOWS)
       {
         //continue;
-        std::cerr<<"Shadows"<<std::endl;
+        //std::cerr<<"Shadows"<<std::endl;
         _matrixStackWorld.push(_matrixStackWorld.top());
         _matrixStackWorld.rotate(90.0f, glm::vec3(-1.0f, 0.0f, 0.0f));
         _drawableVectorArray[count].at(objId)->updateShadowPass(_matrixStackWorld.top(), _camera, _lightList);
