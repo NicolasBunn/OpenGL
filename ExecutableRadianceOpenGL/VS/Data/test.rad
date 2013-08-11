@@ -1,0 +1,15 @@
+scene = 0-limites.rad
+scene = 0-menuiserie.rad
+scene = balcon_sous_face.rad
+scene = balcon-terrasse.rad
+scene = batiment-environnement.rad
+scene = ground.rad
+scene = toit-zinc.rad
+scene = volume_toit
+
+scene = 0-limites.rad
+scene = batiment-environnement.rad
+scene = ground.rad
+
+scene = 0-porte_int.rad
+scene = 0-sol-int.rad
