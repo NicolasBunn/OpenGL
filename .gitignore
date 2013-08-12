@@ -42,7 +42,6 @@ local.properties
 
 # Build results
 
-[Rr]elease/
 x64/
 build/
 [Bb]in/
